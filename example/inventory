@@ -1,0 +1,8 @@
+[host]
+10.10.10.10
+
+[host:vars]
+ansible_ssh_user=****
+ansible_ssh_pass=****
+ansible_connection=network_cli
+ansible_network_os=fos

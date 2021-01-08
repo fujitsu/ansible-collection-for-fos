@@ -1,0 +1,66 @@
+name: CI
+on:
+- pull_request
+- push
+
+jobs:
+  sanity:
+    name: Sanity (${{ matrix.ansible }})
+    strategy:
+      matrix:
+        ansible:
+        - stable-2.10
+        - devel
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          path: ansible_collections/fujitsu/fos
+
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Install ansible-base (${{ matrix.ansible }})
+        run: pip install https://github.com/ansible/ansible/archive/${{ matrix.ansible }}.tar.gz --disable-pip-version-check
+
+      - name: Install ansible_collections.ansible.netcommon
+        run: ansible-galaxy collection install ansible.netcommon -p .
+
+      - name: Run sanity tests
+        run: ansible-test sanity --docker -v --color
+        working-directory: ./ansible_collections/fujitsu/fos
+
+        
+  units:
+    runs-on: ubuntu-latest
+    name: Units (${{ matrix.ansible }})
+    strategy:
+      matrix:
+        ansible:
+          - stable-2.10
+          - devel
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+        with:
+          path: ansible_collections/fujitsu/fos
+
+      - name: Set up Python ${{ matrix.ansible }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Install ansible-base (${{ matrix.ansible }})
+        run: pip install https://github.com/ansible/ansible/archive/${{ matrix.ansible }}.tar.gz --disable-pip-version-check
+
+      - name: Install collection dependencies
+        run: ansible-galaxy collection install ansible.netcommon -p .
+
+      - name: Run unit tests for all Python versions
+        run: ansible-test units -v --color --docker
+        working-directory: ./ansible_collections/fujitsu/fos

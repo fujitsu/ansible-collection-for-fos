@@ -1,0 +1,14 @@
+---
+- hosts: host
+  gather_facts: no
+
+  tasks:
+  - name: "match any"
+    fos_command:
+      commands:
+         - show version
+         - show hardware
+      wait_for:
+         - result[0] contains Runtime Version
+         - result[0] contains test strings
+      match: "any"

@@ -1,0 +1,22 @@
+Memory and Process CPU Utilization Info of Unit:1
+
+Memory Utilization Report
+status     KBytes
+------ ----------
+free      1360596
+alloc     2683828
+
+CPU Peak:
+  5 Secs  60 Secs 300 Secs 3600 Secs
+-------- -------- -------- --------
+  40.90%   60.00%   60.00%   76.10%
+
+CPU Utilization:
+
+PID        Name                  5 Secs  60 Secs 300 Secs 3600 Secs
+---------- ------------------- -------- -------- -------- --------
+3          (ksoftirqd/0)         0.10%    0.09%    0.09%    0.00%
+6          (migration/0)         0.00%    0.00%    0.10%    0.45%
+8          (migration/1)         0.00%    0.00%    0.22%    1.99%
+9          (kworker/1:0)         0.10%    0.01%    0.00%    0.00%
+10         (ksoftirqd/1)         0.10%    0.08%    0.07%    0.00%

@@ -1,0 +1,13 @@
+---
+- hosts: host
+  gather_facts: no
+
+  tasks:
+  - name: initial config
+    fos_config:
+      before: clock timezone 9 minutes 0
+      lines:
+        - lldp transmit
+        - no lldp receive
+        - lldp notification
+      parents: interface 0/13

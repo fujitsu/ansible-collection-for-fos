@@ -1,0 +1,20 @@
+- hosts: host
+  gather_facts: no
+
+  tasks:
+  - name: "show version"
+    fos_command:
+      commands:
+        - show version
+
+  - name: "get hardware fact"
+    fos_facts:
+      gather_subset:
+       - "hardware"
+
+  - name: "configure interface settings"
+    fos_config:
+      lines:
+        - lldp transmit
+        - lldp receive
+      parents: interface 0/16

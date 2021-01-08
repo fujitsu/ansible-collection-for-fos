@@ -1,0 +1,9 @@
+---
+- hosts: host
+  gather_facts: no
+
+  tasks:
+  - name: delete vlan
+    fos_vlan:
+      commands:
+        - no vlan 4000

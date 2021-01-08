@@ -1,0 +1,9 @@
+---
+- hosts: host
+  gather_facts: no
+
+  tasks:
+  - name: "get hardware fact"
+    fos_facts:
+     gather_subset:
+      - "hardware"

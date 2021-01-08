@@ -1,0 +1,14 @@
+---
+- hosts: host
+  gather_facts: no
+
+  tasks:
+  - name: "wait for fails"
+    fos_command:
+      commands:
+         - show version
+         - show hardware
+      wait_for:
+         - result[0] contains Runtime Version
+         - result[0] test strings
+         - result[1] contains Fujitsu

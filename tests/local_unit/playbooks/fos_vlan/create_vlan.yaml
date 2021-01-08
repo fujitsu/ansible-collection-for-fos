@@ -1,0 +1,9 @@
+---
+- hosts: host
+  gather_facts: no
+
+  tasks:
+  - name: create vlan
+    fos_vlan:
+      commands:
+        - vlan 4000

@@ -1,0 +1,8 @@
+---
+- hosts: host
+  gather_facts: no
+
+  tasks:
+  - name: no config change
+    fos_config:
+      lines: clock timezone 9 minutes 0

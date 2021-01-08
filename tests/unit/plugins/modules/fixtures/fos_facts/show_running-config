@@ -1,0 +1,22 @@
+!Current Configuration:
+!
+!System Description "Fujitsu ET-7648BRA-FOS, 1.3.67, Linux 3.5.7+"
+!System Software Version "1.3.67"
+!System Up Time          "20 days 0 hrs 37 mins 7 secs"
+!Cut-through mode is configured as disabled
+!
+hostname "admin"
+ovsdb
+ovsdb tcp port 6640
+enable password 6cd6e7722b4dc61b983a0eb1d8ecd2f61e0bf93d1d0ca5a725958bb7fe97c842b0ff07930122937e04d595ed212491629a23fbadb613ed30bf0392ffa2d3ccfa encrypted
+serviceport protocol none
+serviceport ip 192.168.3.111 255.255.255.0 192.168.3.5
+vlan database
+vlan 2-5,10,14,22,24,26,37,42,50,53,64,72,84,88,99-101,123,333,350,369
+vlan 392,404,410,422,444,777,1005
+exit
+
+network mgmt_vlan 10
+ip telnet server enable
+configure
+clock timezone 9 minutes 0 zone "JST"

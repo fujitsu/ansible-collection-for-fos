@@ -1,0 +1,8 @@
+---
+- hosts: host
+  gather_facts: no
+
+  tasks:
+  - name: configure interface settings
+    fos_config:
+      src: ./tests/local_unit/playbooks/fos_config/candidate.cfg

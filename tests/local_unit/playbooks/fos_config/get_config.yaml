@@ -1,0 +1,9 @@
+---
+- hosts: host
+  gather_facts: no
+
+  tasks:
+  - name: "show running_config"
+    fos_command:
+      commands:
+         - show running-config

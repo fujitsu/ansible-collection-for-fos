@@ -1,0 +1,11 @@
+---
+- hosts: host
+  gather_facts: no
+
+  tasks:
+  - name: backup configuration file
+    fos_config:
+      backup: yes
+      backup_options:
+        filename: backup.cfg
+        dir_path: ~/pswitch

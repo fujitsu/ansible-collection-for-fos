@@ -1,0 +1,13 @@
+---
+- hosts: host
+  gather_facts: no
+
+  tasks:
+  - name: replace block
+    fos_config:
+      lines:
+        - lldp transmit
+        - lldp receive
+        - lldp notification
+      parents: interface 0/13
+      replace: block

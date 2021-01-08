@@ -1,0 +1,9 @@
+---
+- hosts: host
+  gather_facts: no
+
+  tasks:
+  - name: "show version"
+    fos_command:
+      commands:
+        - show version

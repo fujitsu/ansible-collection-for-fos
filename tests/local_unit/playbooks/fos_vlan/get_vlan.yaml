@@ -1,0 +1,9 @@
+---
+- hosts: host
+  gather_facts: no
+
+  tasks:
+  - name: "get vlan"
+    fos_command:
+      commands:
+         - show vlan 4000
