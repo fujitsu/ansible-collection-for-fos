@@ -102,7 +102,6 @@ import re
 from ansible_collections.fujitsu.fos.plugins.module_utils.network.fos import run_commands
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.six import iteritems
-from ansible.module_utils.six.moves import zip
 
 
 class FactsBase(object):

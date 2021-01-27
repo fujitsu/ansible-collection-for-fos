@@ -154,7 +154,6 @@ EXAMPLES = """
 """
 
 
-import json
 import os
 import time
 
@@ -242,7 +241,6 @@ def main():
     warnings = list()
     result['warnings'] = warnings
 
-    config = None
     contents = None
     connection = get_connection(module)
 
@@ -313,7 +311,6 @@ def main():
                 connection.edit_config(candidate=commands)
 
     running_config = module.params['running_config']
-    startup_config = None
 
     if module.params['save']:
         result['changed'] = True

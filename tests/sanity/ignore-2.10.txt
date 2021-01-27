@@ -1,4 +1,3 @@
-plugins/action/fos.py action-plugin-docs
 plugins/modules/fos_config.py validate-modules:parameter-list-no-elements
 plugins/modules/fos_config.py validate-modules:invalid-documentation
 plugins/modules/fos_facts.py validate-modules:parameter-list-no-elements

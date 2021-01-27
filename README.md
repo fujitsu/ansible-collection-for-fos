@@ -16,7 +16,7 @@ The Ansible Network Collection for Fujitsu PSWITCH includes a variety of Ansible
 
 
 ## Installation
-#### From source
+### From source
 
 The [fujitsu/ansible-collection-for-fos repository](https://github.com/fujitsu/ansible-collection-for-fos) contains the code for the collection.
 
@@ -32,9 +32,17 @@ cp -r plugins/ ~/.ansible/
 cp -r plugins/ ~/.ansible/collections/ansible_collections/fujitsu/fos/
 ```
 
-#### From Ansible Galaxy
+### From Ansible Galaxy
 
-TODO
+Install the latest version of fos-ansible-collection
+```
+ansible-galaxy collection install fujitsu.fos
+```
+
+Install a specific version of fos-ansible-collection
+```
+ansible-galaxy collection install fujitsu.fos:1.0.0
+```
 
 ## Version compatibility
 
@@ -43,7 +51,7 @@ TODO
 
 ## Using this collection
 
-#### Example
+### Example
 You can refer to the files in the example folder, modify the IP and other contents and execute:
 
 ```

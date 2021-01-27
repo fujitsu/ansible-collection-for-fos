@@ -30,7 +30,6 @@ version_added: 2.10
 """
 
 import re
-import time
 import json
 
 from ansible_collections.fujitsu.fos.plugins.module_utils.network.fos import load_running_config
@@ -257,4 +256,4 @@ class Cliconf(CliconfBase):
     def send_data(self, data=None):
         if data is None:
             return
-        out = self.send_command(data, sendonly=True)
+        self.send_command(data, sendonly=True)

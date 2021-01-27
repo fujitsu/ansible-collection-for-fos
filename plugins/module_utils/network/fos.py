@@ -30,8 +30,6 @@
 from __future__ import (absolute_import, division, print_function)
 __metaclass__ = type
 
-import re
-import json
 
 from ansible.module_utils._text import to_text
 from ansible.module_utils.connection import Connection, ConnectionError
