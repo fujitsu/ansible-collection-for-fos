@@ -44,6 +44,11 @@ Install a specific version of fos-ansible-collection
 ansible-galaxy collection install fujitsu.fos:1.0.0
 ```
 
+Copy plugins
+```
+cp -r ~/.ansible/collections/ansible_collections/fujitsu/fos/plugins/ ~/.ansible/
+```
+
 ## Version compatibility
 
 * Ansible version 2.10 or later.
