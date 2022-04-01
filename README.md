@@ -2,9 +2,9 @@
 
 ## Collection contents
 
-The Ansible Network Collection for Fujitsu PSWITCH includes a variety of Ansible content to help automate the management of Fujitsu PSWITCHS.
+Collections are a distribution format for Ansible content that can include playbooks, roles, modules, and plugins. The Ansible Network Collection for Fujitsu PSWITCH (fos-ansible-collection) includes a variety of Ansible content to help automate the management of Fujitsu PSWITCHS.
 
-## Collection core modules
+## fos-ansible-collection core modules
 
 - **fos_command.py** — Run commands in Privileged EXEC modes
 
@@ -14,16 +14,22 @@ The Ansible Network Collection for Fujitsu PSWITCH includes a variety of Ansible
 
 - **fos_vlan.py** — Manage configurations in Vlan Config modes
 
-
 ## Installation
-### From source
 
-The [fujitsu/ansible-collection-for-fos repository](https://github.com/fujitsu/ansible-collection-for-fos) contains the code for the collection.
+### Install Ansible and dependency module
 
-Install ansible.netcommon
 ```
-ansible-galaxy collection install ansible.netcommon
+pip3 install ansible --user
+pip3 install paramiko --user
 ```
+
+Detailed information can be found on the [official page](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible).
+
+### Install fos-ansible-collection
+
+#### From source
+
+This repository contains the entire code for fos-ansible-collection, so we can just copy the plugins to complete the installation.
 
 Copy plugins
 ```
@@ -32,7 +38,9 @@ cp -r plugins/ ~/.ansible/
 cp -r plugins/ ~/.ansible/collections/ansible_collections/fujitsu/fos/
 ```
 
-### From Ansible Galaxy
+#### From Ansible Galaxy
+
+Ansible Galaxy is a repository that hosts and shares collections, since fos-ansible-collection has been uploaded and managed there, we can install the plugins directly using ansible-galaxy command.
 
 Install the latest version of fos-ansible-collection
 ```
@@ -44,6 +52,8 @@ Install a specific version of fos-ansible-collection
 ansible-galaxy collection install fujitsu.fos:1.0.0
 ```
 
+Available versions can be found on the [fos-ansible-collection page of Ansible Galaxy](https://galaxy.ansible.com/fujitsu/fos).
+
 Copy plugins
 ```
 cp -r ~/.ansible/collections/ansible_collections/fujitsu/fos/plugins/ ~/.ansible/
@@ -54,13 +64,26 @@ cp -r ~/.ansible/collections/ansible_collections/fujitsu/fos/plugins/ ~/.ansible
 * Ansible version 2.10 or later.
 * Python 2.7 or higher and Python 3.5 or higher
 
-## Using this collection
+## Usage
 
 ### Example
 You can refer to the files in the example folder, modify the IP and other contents and execute:
 
 ```
 ansible-playbook -i ./inventory ./playbook.yaml
+```
+
+Note: Before using above command, you need to ssh to the switch once to complete the key fingerprint authentication.
+
+```
+ssh username@10.10.10.10
+```
+
+```
+The authenticity of host '10.10.10.10 (10.10.10.10)' can't be established.
+ED25519 key fingerprint is SHA256:*******************************************.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
 ```
 
 **inventory**
@@ -99,4 +122,10 @@ ansible_network_os=fos
         - lldp transmit
         - lldp receive
       parents: interface 0/16
+
+  - name: "configure access port"
+    fos_config:
+      lines:
+        - switchport access vlan 30
+      parents: interface 0/36
 ```
