@@ -106,14 +106,14 @@ Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
 This file provides the PSWITCH connection information, such as IP address, username and password etc.
 
 ```
-[host]  # The hostname you named for the PSWITCH in this file.
-10.10.10.10  # The PSWITCH IP address.
+[host]                          # The hostname you named for the PSWITCH in this file.
+10.10.10.10                     # The PSWITCH IP address.
 
-[host:vars]  # The "host" here should be the same as the hostname above.
-ansible_ssh_user=****  # The PSWITCH ssh username.
-ansible_ssh_pass=****  # The PSWITCH ssh password for above username.
+[host:vars]                     # The "host" here should be the same as the hostname above.
+ansible_ssh_user=****           # The PSWITCH ssh username.
+ansible_ssh_pass=****           # The PSWITCH ssh password for above username.
 ansible_connection=network_cli  # Specify the connection method, for PSWITCH it should be "network_cli".
-ansible_network_os=fos  # Specify the network OS, for PSWITCH it should be "fos".
+ansible_network_os=fos          # Specify the network OS, for PSWITCH it should be "fos".
 ```
 
 **playbook.yaml**
@@ -121,32 +121,32 @@ ansible_network_os=fos  # Specify the network OS, for PSWITCH it should be "fos"
 This file contains the network content you want to configure, such as configuring interface settings, adding a port to a VLAN etc.
 
 ```
-- hosts: host  # The hostname of the PSWITCH, it should be the same as in inventory.
-  gather_facts: no  # Specify if the fact modules are executed in parallel or serially and in order.
+- hosts: host                             # The hostname of the PSWITCH, it should be the same as in inventory.
+  gather_facts: no                        # Specify if the fact modules are executed in parallel or serially and in order.
 
-  tasks:  # The task array that you want to run.
-  - name: "show version"  # The task name.
-    fos_command:  # This module is used to run commands on PSWITCH.
-      commands:  # List of commands to send to PSWITCH.
-        - show version  # Show PSWITCH version.
+  tasks:                                  # The task array that you want to run.
+  - name: "show version"                  # The task name.
+    fos_command:                          # This module is used to run commands on PSWITCH.
+      commands:                           # List of commands to send to PSWITCH.
+        - show version                    # Show PSWITCH version.
 
-  - name: "get hardware fact"  # The task name.
-    fos_facts:  # This module is used to collect facts from PSWITCH.
-      gather_subset:  # Restrict the facts collected to a given subset.
-       - "hardware"  # Given the restricted subset.
+  - name: "get hardware fact"             # The task name.
+    fos_facts:                            # This module is used to collect facts from PSWITCH.
+      gather_subset:                      # Restrict the facts collected to a given subset.
+       - "hardware"                       # Given the restricted subset.
 
   - name: "configure interface settings"  # The task name.
-    fos_config:  # This module is used to manage PSWITCH configuration.
-      lines:  # The ordered set of commands that should be configured.
-        - lldp transmit  # Enable lldp transmit.
-        - lldp receive  # Enable lldp receive.
-      parents: interface 0/16  # Specifiy the port to be configured.
+    fos_config:                           # This module is used to manage PSWITCH configuration.
+      lines:                              # The ordered set of commands that should be configured.
+        - lldp transmit                   # Enable lldp transmit.
+        - lldp receive                    # Enable lldp receive.
+      parents: interface 0/16             # Specifiy the port to be configured.
 
-  - name: "configure access port"  # The task name.
-    fos_config:  # This module is used to manage PSWITCH configuration.
-      lines:  # The ordered set of commands that should be configured.
-        - switchport access vlan 30  # Add the port to the specific VLAN.
-      parents: interface 0/36  # Specifiy the port to be configured.
+  - name: "configure access port"         # The task name.
+    fos_config:                           # This module is used to manage PSWITCH configuration.
+      lines:                              # The ordered set of commands that should be configured.
+        - switchport access vlan 30       # Add the port to the specific VLAN.
+      parents: interface 0/36             # Specifiy the port to be configured.
 ```
 
 For the complete usage of each module, please refer to the output of the following commands:
