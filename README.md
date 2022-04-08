@@ -2,7 +2,7 @@
 
 ## Collection contents
 
-Collections are a distribution format for Ansible content that can include playbooks, roles, modules, and plugins. The Ansible Network Collection for Fujitsu PSWITCH (fos-ansible-collection) includes a variety of Ansible content to help automate the management of Fujitsu PSWITCHS.
+Collections are a distribution format for Ansible content that can include playbooks, roles, modules, and plugins, they are usually hosted and shared by a repository called [Ansible Galaxy](https://galaxy.ansible.com). The Ansible Network Collection for Fujitsu PSWITCH (fos-ansible-collection), which also has been uploaded and managed there, contains a variety of Ansible content to help automate the management for Fujitsu PSWITCHs, and you can get it in either of two ways: install from source or install from Ansible Galaxy.
 
 ## fos-ansible-collection core modules
 
@@ -12,26 +12,38 @@ Collections are a distribution format for Ansible content that can include playb
 
 - **fos_facts.py** — Collect facts
 
-- **fos_vlan.py** — Manage configurations in Vlan Config modes
+- **fos_vlan.py** — Manage configurations in VLAN Config modes
 
 ## Installation
 
+Overall steps:
+
+1. Install Ansible and dependency module.
+2. Install fos-ansible-collection.
+
 ### Install Ansible and dependency module
+
+Before installing fos-ansible-collection, please make sure Ansible and the dependency module are available in your environment.
+
+Command reference:
 
 ```
 pip3 install ansible --user
 pip3 install paramiko --user
 ```
 
-Detailed information can be found on the [official page](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible).
+Please refer to the [Ansible official page](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible) for more information.
 
 ### Install fos-ansible-collection
+
+There are two installation paths available: from source or from Ansible Galaxy, please choose one between them to complete the installation.
 
 #### From source
 
 This repository contains the entire code for fos-ansible-collection, so we can just copy the plugins to complete the installation.
 
-Copy plugins
+Copy plugins:
+
 ```
 mkdir -p ~/.ansible/collections/ansible_collections/fujitsu/fos/
 cp -r plugins/ ~/.ansible/
@@ -42,19 +54,22 @@ cp -r plugins/ ~/.ansible/collections/ansible_collections/fujitsu/fos/
 
 Ansible Galaxy is a repository that hosts and shares collections, since fos-ansible-collection has been uploaded and managed there, we can install the plugins directly using ansible-galaxy command.
 
-Install the latest version of fos-ansible-collection
+Install the latest version of fos-ansible-collection:
+
 ```
 ansible-galaxy collection install fujitsu.fos
 ```
 
-Install a specific version of fos-ansible-collection
+Or, install a specific version of fos-ansible-collection:
+
 ```
 ansible-galaxy collection install fujitsu.fos:1.0.0
 ```
 
-Available versions can be found on the [fos-ansible-collection page of Ansible Galaxy](https://galaxy.ansible.com/fujitsu/fos).
+Available versions can be found on the [Ansible Galaxy fos-ansible-collection page](https://galaxy.ansible.com/fujitsu/fos).
 
-Copy plugins
+Then copy plugins:
+
 ```
 cp -r ~/.ansible/collections/ansible_collections/fujitsu/fos/plugins/ ~/.ansible/
 ```
