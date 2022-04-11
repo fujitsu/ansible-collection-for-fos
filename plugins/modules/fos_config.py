@@ -151,6 +151,12 @@ EXAMPLES = """
     backup_options:
       filename: backup.cfg
       dir_path: /home/user
+
+- name: configure access port
+  fos_config:
+    lines:
+      - switchport access vlan 30
+    parents: interface 0/36
 """
 
 
